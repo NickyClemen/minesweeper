@@ -15,7 +15,7 @@
     "baseUrl": ".",
     "paths": {
       "@models": ["./src/models/*"],
-      "@types": ["./src/types/*"],
+      "@namespaces": ["./src/types/namespaces/*"],
       "@utils": ["./src/utils"],
     }
   },
