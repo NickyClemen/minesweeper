@@ -1,4 +1,4 @@
-import { createRandomUUID } from '../../../src/utils';
+import { createRandomUUID } from '../../../utils';
 
 describe('createRandomUUID suite test', () => {
   test('return value must not be undefined.', () => {

@@ -1,22 +1,28 @@
 import { Request, Response, NextFunction,  } from 'express';
-import Joi from 'joi';
 
-export default function validateParamsMiddleware(req:Request, res:Response, next:NextFunction) {
-  const { params = {} } = req;
-  const schema = Joi.object().keys({
-    id: Joi.string().guid({ version: 'uuidv4' }).required()
-  });
+import debug from '@debug'
 
-  const { error: isNotValid } = schema.validate(params);
+import Server from '@namespaces/Server.namespace';
 
-  if(isNotValid) {
-    res.status(422).json({
-      msg: 'Invalid id request.'
-    });
+import { ParamsSchema } from '@schemas';
 
-    next();
+export default async function validateParamsMiddleware(req: Request<Server.Params, unknown, unknown, unknown>, res: Response, next: NextFunction) {
+  debug('[validateParamsMiddleware]', 'init');
+
+  try {
+    const { params }: Request<Server.Params, unknown, unknown, unknown> = req;
+    debug('[validateParamsMiddleware]', JSON.stringify(params));
+
+    const validateParams = await ParamsSchema.validateAsync(params);
+
+    if (validateParams) {
+      next();
+    }
+  } catch (err: unknown) {
+    const error = err as Error;
+    debug('[validateParamsMiddleware]', JSON.stringify(error));
+
+    next(error);
   }
-
-  next();
 }
 

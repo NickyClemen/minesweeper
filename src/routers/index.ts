@@ -1,4 +1,5 @@
-import Server from './../types/namespaces/Server.namespace';
+import validateParamsMiddleware from '@middlewares/validateParamsMiddleware';
+import Server from '@namespaces/Server.namespace';
 
 import {
   Application,
@@ -9,19 +10,19 @@ import {
 } from 'express';
 
 function handler(app:Application) {
-  const router:Router = Router();
+  const router: Router = Router();
 
-  app.use('/api');
+  app.use('/api', router);
 
-  router.post('/new-game', (req:Request, res:Response, next:NextFunction) => {
-    const { params = {} } = req;
+  router.post('/new-game', validateParamsMiddleware, (req: Request<Server.Params, unknown, unknown, unknown>, res: Response, next: NextFunction) => {
+    const { params: { id } }: Request<Server.Params, unknown, unknown, unknown> = req;
   });
 
-  router.get('/new-game/:id', (req:Request, res:Response, next:NextFunction) => {
-    const { params = {} } = req;
+  router.get('/new-game/:id', validateParamsMiddleware, (req: Request<Server.Params, unknown, unknown, unknown>, res: Response, next: NextFunction) => {
+    const { params: { id } }: Request<Server.Params, unknown, unknown, unknown> = req;
 
     switch(params) {
-      case Object.keys(params) === 0: {
+      case Object.keys(params).length === 0: {
         const newGame = new Game();
 
         res.status(200).json({ newGame });

@@ -1,7 +1,7 @@
 // import Box from './Box';
 
-import { createRandomUUID } from '../utils';
-import ITable from '../types/interfaces/Table.interface';
+import { createRandomUUID } from '@utils';
+import ITable from '@interfaces/ITable.interface';
 
 export default class Table {
   private id:string;

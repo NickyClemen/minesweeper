@@ -1,6 +1,6 @@
 namespace Server {
   export interface Params {
-    id:string;
+    id: string;
   }
 }
 

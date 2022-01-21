@@ -1,24 +1,34 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "outDir": "./dist",
-    "strict": true,
     "target": "es6",
     "moduleResolution": "node",
-    "typeRoots": ["node_modules/@types"],
-    "baseUrl": ".",
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "dist",
+    "baseUrl": "src",
     "paths": {
-      "@models": ["./src/models/*"],
-      "@namespaces": ["./src/types/namespaces/*"],
-      "@utils": ["./src/utils"],
-    }
+      "@debug": ["utils/debug"],
+      "@interfaces/*": ["types/interfaces/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@namespaces/*": ["types/namespaces/*"],
+      "@schemas": ["types/schemas"],
+      "@utils": ["utils"],
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": true,
+    "noImplicitThis": true,
+    "removeComments": true,
+    "types": ["node", "express", "debug"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "__mocks__",
+    "__test__"
+  ]
 }

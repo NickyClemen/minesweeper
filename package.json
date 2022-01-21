@@ -4,19 +4,26 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon main.ts",
+    "lint": "eslint src",
+    "lint:fix": "eslint . --fix",
     "test": "jest --verbose"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.0",
+    "@types/debug": "^4.1.7",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.3",
     "@types/joi": "^17.2.3",
+    "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.5",
     "@types/uuid": "^8.3.3",
-    "chai": "^4.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.4.5",
     "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
     "supertest": "^6.1.6",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
@@ -24,8 +31,11 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
+    "debug": "^4.3.3",
+    "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "joi": "^17.5.0",
+    "morgan": "^1.10.0",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   }
